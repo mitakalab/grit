@@ -231,7 +231,7 @@ module Grit
       if parents.empty?
         show
       else
-        self.class.diff(@repo, parents.first.id, @id, paths, options)
+        self.class.diff(@repo, parents.first.id, @id, paths.to_a, options)
       end
     end
 
