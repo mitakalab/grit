@@ -227,11 +227,11 @@ module Grit
     # options - An optional Hash of options, passed to Grit::Commit.diff.
     #
     # Returns Grit::Diff[] (baked)
-    def diffs(options = {})
+    def diffs(paths = [], options = {})
       if parents.empty?
         show
       else
-        self.class.diff(@repo, parents.first.id, @id, [], options)
+        self.class.diff(@repo, parents.first.id, @id, paths, options)
       end
     end
 
