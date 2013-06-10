@@ -564,7 +564,11 @@ module Grit
     #   +b+ is the other commit
     #   +paths+ is an optional list of file paths on which to restrict the diff
     def diff(a, b, *paths)
-      diff = self.git.native('diff', {:full_index => true}, a, b, '--', *paths)
+      if a.nil?
+        diff = self.git.native('show', {:full_index => true}, b, '--', *paths)
+      else
+        diff = self.git.native('diff', {:full_index => true}, a, b, '--', *paths)
+      end
 
       if diff =~ /diff --git a/
         diff = diff.sub(/.*?(diff --git a)/m, '\1')
