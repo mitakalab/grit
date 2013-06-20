@@ -9,8 +9,7 @@ module Grit
     end
 
     def data
-#      GritExt.encode! old_data
-      old_data
+      GritExt.encode! old_data
     end
 
     class << self
