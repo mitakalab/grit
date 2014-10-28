@@ -146,7 +146,7 @@ module Grit
         # GITLAB patch
         # Skip all garbage unless we get real commit
         while !lines.empty? && lines.first !~ /^commit [a-zA-Z0-9]*$/
-          lines.shift 
+          lines.shift
         end
 
         id = lines.shift.split.last
@@ -214,8 +214,8 @@ module Grit
         diff = @repo.git.show({:full_index => true, :pretty => 'raw'}, @id)
       end
 
-      if diff =~ /diff --git "?a/
-        diff = diff.sub(/.+?(diff --git "?a)/m, '\1')
+      if diff =~ /diff --git a/
+        diff = diff.sub(/.*?(diff --git a)/m, '\1')
       else
         diff = ''
       end
